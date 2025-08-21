@@ -7,14 +7,14 @@ Function Initialize(receiver String) Uint64
 6 STORE("deposited",0) 
 7 RETURN 0
 End Function
-Function StartSwap(value Uint64, hash String) Uint64
-1 IF value == 0 THEN GOTO 7
+Function StartSwap(hash String) Uint64
+1 IF DEROVALUE() == 0 THEN GOTO 7
 2 IF EXISTS("hash")==1 THEN GOTO 7
 3 STORE("hash",hash)
 4 STORE("deadline",BLOCK_TIMESTAMP() + 86400)
-5 STORE("deposited",value)
+5 STORE("deposited",DEROVALUE())
 6 RETURN 0
-61 RETURN 1
+7 RETURN 1
 End Function
 Function Withdraw(key String) Uint64 
 1 IF ADDRESS_RAW(LOAD("receiver"))==SIGNER() THEN GOTO 3
